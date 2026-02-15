@@ -7,8 +7,15 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
-        body { background-color: #050505; color: white; font-family: 'Inter', sans-serif; overflow: hidden; }
+body {
+  background-color: #050505; /* Твой текущий цвет фона */
+  color: white;
+  /* Системные шрифты Apple и современные аналоги */
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased; /* Делает текст мягче на iPhone/Mac */
+  overflow: hidden; 
+}
         
         .fade-in { animation: fadeIn 1.5s ease-out; }
         @keyframes fadeIn {
@@ -81,3 +88,4 @@
     </script>
 </body>
 </html>
+

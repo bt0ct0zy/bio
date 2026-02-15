@@ -20,7 +20,7 @@ body {
   letter-spacing: -0.01em; 
   text-rendering: optimizeLegibility; 
 }
- .fade-in { animation: fadeIn 1.5s ease-out; }
+ .fade-in { animation: fadeIn 3s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -60,8 +60,8 @@ body {
         
         <div class="relative inline-block mb-6">
             <img src="https://i.postimg.cc/SRkP50HS/photo-2026-02-13-23-08-04.jpg" 
-                 alt="avatar"
-                 class="w-24 h-24 rounded-full object-cover border border-white/10 shadow-xl">
+     alt="avatar" 
+     class="profile-img w-24 h-24 rounded-full object-cover border border-white/10 shadow-xl">
             <div class="absolute bottom-1 right-1 w-4 h-4 bg-[#23a55a] border-2 border-[#050505] rounded-full"></div>
         </div>
 
@@ -95,6 +95,7 @@ body {
     </script>
 </body>
 </html>
+
 
 
 

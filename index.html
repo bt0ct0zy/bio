@@ -11,6 +11,7 @@
             background-color: #050505;
             color: white;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            -webkit-font-smoothing: antialiased;
             overflow: hidden;
         }
 
@@ -29,21 +30,21 @@
             z-index: 10;
         }
 
-        /* Единый стиль для всех кнопок */
         .btn-link {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
-            padding-top: 0.875rem; /* py-3.5 */
-            padding-bottom: 0.875rem; /* py-3.5 */
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
+        /* Добавлено свечение при наведении */
         .btn-link:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
             transform: translateY(-2px);
         }
 
@@ -56,15 +57,23 @@
             pointer-events: none;
             z-index: 0;
             transform: translate(-50%, -50%);
+            will-change: left, top;
         }
 
         .brand-sub {
             font-size: 10px;
             letter-spacing: 0.5em;
+            text-indent: 0.5em;
             color: rgba(255, 255, 255, 0.25);
             text-transform: uppercase;
             margin-top: 8px;
         }
+
+        .profile-img { 
+            transition: transform 0.5s ease; 
+            border: 1px solid rgba(255,255,255,0.1); 
+        }
+        .profile-img:hover { transform: scale(1.05); }
     </style>
 </head>
 <body class="flex items-center justify-center min-h-screen">
@@ -73,26 +82,32 @@
 
     <div class="fade-in glass-card w-full max-w-[360px] p-8 text-center mx-4 shadow-2xl">
         <div class="relative inline-block mb-6">
-            <img src="https://i.postimg.cc/yx95J2mv/bleood.jpg" alt="avatar" class="w-24 h-24 rounded-full object-cover border border-white/10 hover:scale-105 transition-transform duration-500">
+            <img src="https://i.postimg.cc/yx95J2mv/bleood.jpg" 
+                 alt="avatar" 
+                 class="profile-img w-24 h-24 rounded-full object-cover">
         </div>
 
         <h1 class="text-2xl font-bold">bt0ct0zy</h1>
         <div class="brand-sub mb-10">Elite Gear Founder</div>
 
         <div class="space-y-3">
-            <a href="https://t.me/bt0hub" target="_blank" class="btn-link rounded-xl text-sm">
+            <a href="https://t.me/bt0hub" target="_blank" class="btn-link py-3.5 rounded-xl text-sm">
                 <i data-lucide="send" class="w-4 h-4"></i> Telegram Channel
             </a>
-            <a href="https://t.me/bt0ct0zyVPS" target="_blank" class="btn-link rounded-xl text-sm">
+            
+            <a href="https://t.me/bt0ct0zyVPS" target="_blank" class="btn-link py-3.5 rounded-xl text-sm">
                 <i data-lucide="server" class="w-4 h-4"></i> VPS
             </a>
-            <a href="https://discord.gg/9DZTEFVKkc" target="_blank" class="btn-link rounded-xl text-sm">
+
+            <a href="https://discord.gg/9DZTEFVKkc" target="_blank" class="btn-link py-3.5 rounded-xl text-sm">
                 <i data-lucide="message-square" class="w-4 h-4"></i> Discord
             </a>
-            <a href="https://x.com/cantez333" target="_blank" class="btn-link rounded-xl text-sm">
-                <i data-lucide="twitter" class="w-4 h-4"></i> X (Twitter)
+
+            <a href="https://x.com/cantez333" target="_blank" class="btn-link py-3.5 rounded-xl text-sm">
+                <i data-lucide="twitter" class="w-4 h-4"></i> X(Twitter)
             </a>
-            <a href="https://soundcloud.com/bt0ct0zy" target="_blank" class="btn-link rounded-xl text-sm">
+
+            <a href="https://soundcloud.com/bt0ct0zy" target="_blank" class="btn-link py-3.5 rounded-xl text-sm">
                 <i data-lucide="music" class="w-4 h-4"></i> SoundCloud
             </a>
         </div>

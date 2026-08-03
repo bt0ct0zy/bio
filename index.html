@@ -84,14 +84,15 @@
         }
         .profile-img:hover { transform: scale(1.05); }
 
-        /* Стиль для интерактивного ника-кнопки */
+        /* Идеально центрированная ссылка-никнейм с зумом */
         .nickname-link {
             display: inline-block;
-            transition: transform 0.3s ease, color 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.3s ease;
         }
         .nickname-link:hover {
-            transform: scale(1.15);
-            color: #ffffff;
+            transform: scale(1.1);
         }
     </style>
 </head>
@@ -106,10 +107,12 @@
                  class="profile-img w-24 h-24 rounded-full object-cover">
         </div>
 
-        <!-- Никнейм в виде кликабельной кнопки -->
-        <a href="https://t.me/bt0ct0zy" target="_blank" rel="noopener noreferrer" class="nickname-link">
-            <h1 class="text-2xl font-bold">bt0ct0zy</h1>
-        </a>
+        <!-- Поправленный заголовок-ссылка -->
+        <div class="w-full text-center">
+            <a href="https://t.me/bt0ct0zy" target="_blank" rel="noopener noreferrer" class="nickname-link">
+                <h1 class="text-2xl font-bold">bt0ct0zy</h1>
+            </a>
+        </div>
 
         <div class="brand-sub mb-10">Elite Gear Founder</div>
 

@@ -83,6 +83,16 @@
             border: 1px solid rgba(255,255,255,0.1); 
         }
         .profile-img:hover { transform: scale(1.05); }
+
+        /* Стиль для интерактивного ника-кнопки */
+        .nickname-link {
+            display: inline-block;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        .nickname-link:hover {
+            transform: scale(1.15);
+            color: #ffffff;
+        }
     </style>
 </head>
 <body>
@@ -96,7 +106,11 @@
                  class="profile-img w-24 h-24 rounded-full object-cover">
         </div>
 
-        <h1 class="text-2xl font-bold">bt0ct0zy</h1>
+        <!-- Никнейм в виде кликабельной кнопки -->
+        <a href="https://t.me/bt0ct0zy" target="_blank" rel="noopener noreferrer" class="nickname-link">
+            <h1 class="text-2xl font-bold">bt0ct0zy</h1>
+        </a>
+
         <div class="brand-sub mb-10">Elite Gear Founder</div>
 
         <nav class="space-y-3">

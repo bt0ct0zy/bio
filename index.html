@@ -1,158 +1,686 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>bt0ct0zy | bio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts: JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
     <style>
-        body {
-            background-color: #050505;
-            color: white;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            -webkit-font-smoothing: antialiased;
-            overflow: hidden;
+        /* === BASE & RESET === */
+        *, *::before, *::after {
+            box-sizing: border-box;
             margin: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            padding: 0;
+        }
+
+        :root {
+            --bg-deep: #060606;
+            --card-bg: rgba(15, 15, 15, 0.65);
+            --border-subtle: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(255, 255, 255, 0.7);
+            --text-primary: #ffffff;
+            --text-muted: rgba(255, 255, 255, 0.4);
+            --text-silver: #c0c0c0;
+            --accent-glow: rgba(255, 255, 255, 0.15);
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            background-image: 
+                radial-gradient(circle at 50% 35%, rgba(40, 40, 40, 0.35) 0%, rgba(6, 6, 6, 0.95) 70%),
+                radial-gradient(circle at 20% 80%, rgba(25, 25, 25, 0.2) 0%, transparent 50%);
+            color: var(--text-primary);
+            font-family: 'JetBrains Mono', monospace;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
             min-height: 100vh;
-        }
-
-        .fade-in { animation: fadeIn 1.5s ease-out forwards; }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .glass-card {
-            background: rgba(0, 0, 0, 0.55);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 28px;
-            position: relative;
-            z-index: 10;
-        }
-
-        .btn-link {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            padding: 24px 16px;
+            overflow-x: hidden;
+            position: relative;
         }
 
-        .btn-link:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.3);
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
-            transform: translateY(-2px);
-        }
-
-        .cursor-glow {
+        /* Ambient subtle grid line */
+        body::before {
+            content: '';
             position: fixed;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(0,0,0,0) 70%);
+            inset: 0;
+            background: linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Ambient cursor glow */
+        .ambient-glow {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.035) 0%, rgba(0, 0, 0, 0) 70%);
             border-radius: 50%;
             pointer-events: none;
             z-index: 1;
             transform: translate(-50%, -50%);
-            will-change: transform;
+            transition: opacity 0.3s ease;
         }
 
-        .brand-sub {
-            font-size: 10px;
-            letter-spacing: 0.5em;
-            color: rgba(255, 255, 255, 0.25);
-            text-transform: uppercase;
-            margin-top: 8px;
+        /* === PROFILE CARD === */
+        .profile-card {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 480px;
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 16px;
+            border: 1px solid var(--border-subtle);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+            padding: 34px 28px;
+            text-align: center;
+            animation: cardAppear 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        .profile-img { 
-            transition: transform 0.5s ease; 
-            border: 1px solid rgba(255,255,255,0.1); 
+        @keyframes cardAppear {
+            from {
+                opacity: 0;
+                transform: translateY(16px) scale(0.98);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
         }
-        .profile-img:hover { transform: scale(1.05); }
 
-        .nickname-link {
+        /* === 1. AVATAR === */
+        .avatar-link {
+            position: relative;
             display: inline-block;
+            margin-bottom: 18px;
             text-decoration: none;
-            color: inherit;
-            transition: transform 0.3s ease;
+            cursor: pointer;
         }
-        .nickname-link:hover {
+
+        .avatar-img {
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+            border: 1.5px solid rgba(255, 255, 255, 0.25);
+            transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), 
+                        border-color 0.4s ease, 
+                        box-shadow 0.4s ease;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+        }
+
+        .avatar-link:hover .avatar-img {
+            transform: scale(1.05);
+            border-color: #ffffff;
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.35);
+        }
+
+        /* Online status dot */
+        .status-dot {
+            position: absolute;
+            bottom: 4px;
+            right: 4px;
+            width: 12px;
+            height: 12px;
+            background-color: #22c55e;
+            border: 2px solid #080808;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(34, 197, 94, 0.7);
+        }
+
+        /* === 2. NICKNAME & LIQUID SILVER === */
+        .nickname-wrapper {
+            margin-bottom: 12px;
+        }
+
+        .nickname {
+            display: inline-block;
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            text-decoration: none;
+            cursor: pointer;
+            position: relative;
+            user-select: none;
+            /* Liquid silver shimmer */
+            background: linear-gradient(110deg, #ffffff 0%, #ffffff 30%, #525252 50%, #ffffff 70%, #ffffff 100%);
+            background-size: 250% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: silverShine 4.5s linear infinite;
+            filter: drop-shadow(0 2px 10px rgba(255, 255, 255, 0.12));
+            transition: filter 0.3s ease, transform 0.2s ease;
+        }
+
+        .nickname:hover {
+            filter: drop-shadow(0 0 14px rgba(255, 255, 255, 0.4));
+            transform: scale(1.02);
+        }
+
+        @keyframes silverShine {
+            0% { background-position: 180% 0; }
+            100% { background-position: -180% 0; }
+        }
+
+        /* Badges list */
+        .badge-list {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            margin-top: 8px;
+            flex-wrap: nowrap;
+            white-space: nowrap;
+        }
+
+        .badge-item {
+            font-size: 9.5px;
+            color: rgba(255, 255, 255, 0.65);
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            border-radius: 6px;
+            padding: 3px 6px;
+            letter-spacing: 0.01em;
+            white-space: nowrap;
+            flex-shrink: 0;
+            transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+        }
+
+        .badge-item:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+        }
+
+        .badge-accent {
+            color: #ffffff;
+            border-color: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.07);
+            font-weight: 700;
+        }
+
+        /* === 3. BIO-STATUS === */
+        .bio-status {
+            font-size: 11.5px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            max-width: 350px;
+            margin: 0 auto 20px auto;
+            letter-spacing: 0.02em;
+        }
+
+        /* === 4. SOCIAL LINKS GRID (4 BUTTONS) === */
+        .socials-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 22px;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 44px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 10px;
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .social-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+            transition: transform 0.25s ease, fill 0.25s ease;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--border-hover);
+            color: #ffffff;
+            box-shadow: 0 0 16px rgba(255, 255, 255, 0.18);
+        }
+
+        .social-btn:hover svg {
             transform: scale(1.1);
+        }
+
+        /* Tooltip */
+        .btn-tooltip {
+            position: absolute;
+            bottom: calc(100% + 6px);
+            left: 50%;
+            transform: translateX(-50%) translateY(4px);
+            background: #111111;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 10px;
+            padding: 3px 7px;
+            border-radius: 5px;
+            pointer-events: none;
+            opacity: 0;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            z-index: 30;
+        }
+
+        .social-btn:hover .btn-tooltip {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* === 5. AUDIO PLAYER / WIDGET === */
+        .audio-widget {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        .audio-widget:hover {
+            border-color: rgba(255, 255, 255, 0.14);
+        }
+
+        .play-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            flex-shrink: 0;
+            transition: all 0.2s ease;
+        }
+
+        .play-btn:hover {
+            background: #ffffff;
+            color: #000000;
+            box-shadow: 0 0 16px rgba(255, 255, 255, 0.4);
+            transform: scale(1.05);
+        }
+
+        .play-btn svg {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
+            margin-left: 1px;
+        }
+
+        .play-btn.playing svg {
+            margin-left: 0;
+        }
+
+        .track-info {
+            flex: 1;
+            text-align: left;
+            min-width: 0;
+        }
+
+        .track-title {
+            font-size: 11px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.85);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        /* Animated Equalizer Bars */
+        .equalizer-row {
+            display: flex;
+            align-items: flex-end;
+            gap: 2.5px;
+            height: 12px;
+        }
+
+        .eq-bar {
+            width: 3px;
+            height: 3px;
+            background-color: rgba(255, 255, 255, 0.45);
+            border-radius: 1px;
+            transition: height 0.15s ease, background-color 0.2s ease;
+        }
+
+        .audio-widget.is-playing .eq-bar {
+            background-color: #ffffff;
+            box-shadow: 0 0 6px rgba(255, 255, 255, 0.5);
+            animation: bounceBar 0.9s ease-in-out infinite alternate;
+        }
+
+        .audio-widget.is-playing .eq-bar:nth-child(1) { animation-duration: 0.65s; animation-delay: 0.1s; }
+        .audio-widget.is-playing .eq-bar:nth-child(2) { animation-duration: 0.85s; animation-delay: 0.3s; }
+        .audio-widget.is-playing .eq-bar:nth-child(3) { animation-duration: 0.55s; animation-delay: 0.0s; }
+        .audio-widget.is-playing .eq-bar:nth-child(4) { animation-duration: 0.75s; animation-delay: 0.4s; }
+        .audio-widget.is-playing .eq-bar:nth-child(5) { animation-duration: 0.95s; animation-delay: 0.2s; }
+
+        @keyframes bounceBar {
+            0% { height: 2px; }
+            50% { height: 12px; }
+            100% { height: 4px; }
+        }
+
+        /* Volume control */
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+
+        .volume-icon {
+            width: 14px;
+            height: 14px;
+            fill: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: fill 0.2s ease;
+        }
+
+        .volume-icon:hover {
+            fill: #ffffff;
+        }
+
+        .volume-slider {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 56px;
+            height: 3px;
+            border-radius: 2px;
+            background: rgba(255, 255, 255, 0.15);
+            outline: none;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: #ffffff;
+            cursor: pointer;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+            transition: transform 0.1s ease;
+        }
+
+        .volume-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+        }
+
+        /* === 6. BOTTOM VIEW COUNTER (OUTSIDE CARD) === */
+        .view-counter {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 20;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 6px 12px;
+            background: rgba(14, 14, 14, 0.65);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.5);
+            letter-spacing: 0.05em;
+            user-select: none;
+            transition: border-color 0.25s ease, color 0.25s ease;
+        }
+
+        .view-counter:hover {
+            border-color: rgba(255, 255, 255, 0.25);
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .view-counter svg {
+            width: 14px;
+            height: 14px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 480px) {
+            .profile-card {
+                padding: 26px 12px;
+                border-radius: 14px;
+            }
+            .nickname {
+                font-size: 22px;
+            }
+            .badge-list {
+                gap: 3px;
+            }
+            .badge-item {
+                font-size: 7.8px;
+                padding: 2px 4px;
+                letter-spacing: 0;
+            }
+            .socials-row {
+                gap: 8px;
+            }
+            .audio-widget {
+                padding: 10px 12px;
+                gap: 10px;
+            }
+            .volume-slider {
+                width: 44px;
+            }
+            .view-counter {
+                bottom: 14px;
+                left: 14px;
+                padding: 5px 10px;
+                font-size: 10px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Зацикленный видеофон -->
-    <video autoplay loop muted playsinline class="fixed inset-0 w-full h-full object-cover z-0 pointer-events-none">
-        <source src="https://i.imgur.com/uJ7rfst.mp4" type="video/mp4">
-    </video>
+    <!-- AMBIENT CURSOR GLOW -->
+    <div id="ambientGlow" class="ambient-glow"></div>
 
-    <!-- Свечение за курсором -->
-    <div id="glow" class="cursor-glow"></div>
+    <!-- MAIN PROFILE CARD -->
+    <main class="profile-card">
+        
+        <!-- 1. AVATAR (Click to open bt0llc) -->
+        <a href="https://bt0ct0zy.github.io/bt0llc/" target="_blank" rel="noopener noreferrer" class="avatar-link" title="Open bt0llc">
+            <img src="https://i.imgur.com/9Xp4z5a.jpeg" alt="bt0ct0zy" class="avatar-img">
+            <span class="status-dot" title="Online"></span>
+        </a>
 
-    <main class="fade-in glass-card w-full max-w-[360px] p-8 text-center mx-4 shadow-2xl">
-        <div class="relative inline-block mb-2">
-            <img src="https://i.postimg.cc/s2KJ8SC3/enhanced-EF37B3C7-DBB6-4E44-9B0D-BDDA92F9ABF8.png" 
-                 alt="bt0ct0zy avatar" 
-                 class="profile-img w-24 h-24 rounded-full object-cover">
-        </div>
-
-        <div class="w-full text-center">
-            <a href="https://t.me/bt0ct0zy" target="_blank" rel="noopener noreferrer" class="nickname-link">
-                <h1 class="text-2xl font-bold">bt0ct0zy</h1>
-            </a>
-        </div>
-
-        <div class="brand-sub mb-10">Elite Gear founder</div>
-
-        <nav class="space-y-3">
-            <a href="https://t.me/btoctozy" target="_blank" rel="noopener noreferrer" class="btn-link py-3.5 rounded-xl text-sm">
-                <i data-lucide="send" class="w-4 h-4"></i> Telegram Channel
-            </a>
+        <!-- 2. NICKNAME & TECH TAGS -->
+        <div class="nickname-wrapper">
+            <!-- Click to open Telegram @bt0llc -->
+            <a href="https://t.me/bt0llc" target="_blank" rel="noopener noreferrer" class="nickname" title="Open telegram @bt0llc">bt0ct0zy</a>
             
-            <a href="https://t.me/bt0ct0zyVPS" target="_blank" rel="noopener noreferrer" class="btn-link py-3.5 rounded-xl text-sm">
-                <i data-lucide="server" class="w-4 h-4"></i> VPS
+            <!-- Badges: DevSecOps engineer, cybersecurity specialist, reverse engineer, 38 -->
+            <div class="badge-list">
+                <span class="badge-item">DevSecOps engineer</span>
+                <span class="badge-item">cybersecurity specialist</span>
+                <span class="badge-item">reverse engineer</span>
+                <span class="badge-item badge-accent">38</span>
+            </div>
+        </div>
+
+        <!-- 3. BIO-STATUS -->
+        <p class="bio-status">
+            systems & network architecture • golang & low-level • elite gear
+        </p>
+
+        <!-- 4. SOCIAL LINKS GRID (GitHub, Telegram Channel, Discord, Soundcloud) -->
+        <div class="socials-row">
+            <!-- GitHub -->
+            <a href="https://github.com/bt0ct0zy" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="GitHub">
+                <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                <span class="btn-tooltip">GitHub</span>
             </a>
 
-            <a href="https://discord.gg/jpn6jY6d37" target="_blank" rel="noopener noreferrer" class="btn-link py-3.5 rounded-xl text-sm">
-                <i data-lucide="message-square" class="w-4 h-4"></i> Discord server
+            <!-- Telegram Channel -->
+            <a href="https://t.me/+zUqeAzSh7Y1jMTNi" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Telegram Channel">
+                <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.121l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.458c.538-.196 1.006.128.832.941z"/></svg>
+                <span class="btn-tooltip">Telegram</span>
             </a>
 
-            <a href="https://github.com/bt0ct0zy" target="_blank" rel="noopener noreferrer" class="btn-link py-3.5 rounded-xl text-sm">
-                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg> GitHub
+            <!-- Discord (Direct link) -->
+            <a href="https://discord.gg/jpn6jY6d37" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Discord Server">
+                <svg viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.894.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+                <span class="btn-tooltip">Discord</span>
             </a>
 
-            <a href="https://soundcloud.com/bt0ct0zy?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank" rel="noopener noreferrer" class="btn-link py-3.5 rounded-xl text-sm">
-                <i data-lucide="cloud-lighting" class="w-4 h-4"></i> Soundcloud
+            <!-- Soundcloud -->
+            <a href="https://soundcloud.com/bt0ct0zy" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Soundcloud">
+                <svg viewBox="0 0 24 24"><path d="M1.175 12.225c-.053 0-.102.046-.102.105v4.542c0 .058.049.105.102.105.056 0 .105-.047.105-.105v-4.542c0-.059-.049-.105-.105-.105zm1.144-.82c-.067 0-.125.056-.125.125v5.882c0 .069.058.125.125.125.07 0 .126-.056.126-.125v-5.882c0-.069-.056-.125-.126-.125zm1.178-.073c-.08 0-.147.067-.147.15v6.027c0 .083.067.15.147.15s.15-.067.15-.15v-6.027c0-.083-.07-.15-.15-.15zm1.178-.604c-.092 0-.168.077-.168.172v7.195c0 .095.076.172.168.172.095 0 .172-.077.172-.172v-7.195c0-.095-.077-.172-.172-.172zm1.177-.323c-.104 0-.188.086-.188.192v7.79c0 .106.084.192.188.192.106 0 .193-.086.193-.192v-7.79c0-.106-.087-.192-.193-.192zm1.177-.074c-.116 0-.21.096-.21.213v8.006c0 .117.094.213.21.213.117 0 .213-.096.213-.213v-8.006c0-.117-.096-.213-.213-.213zm1.178-.682c-.126 0-.23.104-.23.232v9.336c0 .128.104.232.23.232.129 0 .233-.104.233-.232v-9.336c0-.128-.104-.232-.233-.232zm1.177.303c-.138 0-.25.114-.25.253v8.818c0 .139.112.253.25.253.139 0 .253-.114.253-.253v-8.818c0-.139-.114-.253-.253-.253zm3.178-3.037c-.12 0-.237.014-.351.037-.087.017-.143.098-.143.186v11.758c0 .108.088.195.195.195h7.241c2.474 0 4.48-2.006 4.48-4.48 0-2.316-1.761-4.22-4.02-4.457-.367-2.348-2.39-4.14-4.82-4.14-.325 0-.642.032-.95.093-.095.019-.158.108-.145.204.145 1.05.023 2.128-.367 3.125-.138.353-.327.683-.556.979-.064.083-.178.107-.264.053z"/></svg>
+                <span class="btn-tooltip">Soundcloud</span>
             </a>
-        </nav>
+        </div>
+
+        <!-- 5. INTERACTIVE AUDIO PLAYER WIDGET -->
+        <div class="audio-widget" id="audioWidget">
+            <button type="button" class="play-btn" id="playBtn" aria-label="Toggle Play">
+                <svg id="playIcon" viewBox="0 0 24 24"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg>
+            </button>
+
+            <div class="track-info">
+                <span class="track-title" id="trackTitle">Apathy.mp3</span>
+                <div class="equalizer-row" id="equalizer">
+                    <div class="eq-bar"></div>
+                    <div class="eq-bar"></div>
+                    <div class="eq-bar"></div>
+                    <div class="eq-bar"></div>
+                    <div class="eq-bar"></div>
+                </div>
+            </div>
+
+            <div class="volume-control">
+                <svg class="volume-icon" viewBox="0 0 24 24" title="Toggle Mute"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.01" value="0.75" aria-label="Volume">
+            </div>
+
+            <audio id="audioElement" preload="metadata" playsinline>
+                <source src="https://bt0ct0zy.github.io/bio/Apathy.mp3" type="audio/mpeg">
+                <source src="https://raw.githubusercontent.com/bt0ct0zy/bio/main/Apathy.mp3" type="audio/mpeg">
+                <source src="Apathy.mp3" type="audio/mpeg">
+            </audio>
+        </div>
+
     </main>
 
+    <!-- 6. BOTTOM-LEFT VIEW COUNTER (OUTSIDE CARD) -->
+    <div class="view-counter" title="Profile views">
+        <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+        <span>1,337</span>
+    </div>
+
     <script>
-        lucide.createIcons();
-
-        const glow = document.getElementById('glow');
-        let requestId = null;
-
+        /* ===================================================
+           1. AMBIENT CURSOR GLOW
+        =================================================== */
+        const glow = document.getElementById('ambientGlow');
+        let glowReq = null;
         window.addEventListener('mousemove', (e) => {
-            if (requestId) {
-                cancelAnimationFrame(requestId);
-            }
-            requestId = requestAnimationFrame(() => {
+            if (glowReq) cancelAnimationFrame(glowReq);
+            glowReq = requestAnimationFrame(() => {
                 glow.style.left = e.clientX + 'px';
                 glow.style.top = e.clientY + 'px';
             });
         });
+
+        /* ===================================================
+           2. AUDIO PLAYER (Apathy.mp3)
+        =================================================== */
+        const audio = document.getElementById('audioElement');
+        const audioWidget = document.getElementById('audioWidget');
+        const playBtn = document.getElementById('playBtn');
+        const volumeSlider = document.getElementById('volumeSlider');
+        const volumeIcon = document.querySelector('.volume-icon');
+        let isAudioPlaying = false;
+        let previousVolume = 0.75;
+
+        const PLAY_SVG = '<svg viewBox="0 0 24 24"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg>';
+        const PAUSE_SVG = '<svg viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>';
+
+        audio.volume = parseFloat(volumeSlider.value);
+
+        function updateUIState(playing) {
+            isAudioPlaying = playing;
+            if (playing) {
+                audioWidget.classList.add('is-playing');
+                playBtn.classList.add('playing');
+                playBtn.innerHTML = PAUSE_SVG;
+            } else {
+                audioWidget.classList.remove('is-playing');
+                playBtn.classList.remove('playing');
+                playBtn.innerHTML = PLAY_SVG;
+            }
+        }
+
+        playBtn.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play().then(() => {
+                    updateUIState(true);
+                }).catch((err) => {
+                    console.warn("Audio playback error:", err);
+                });
+            } else {
+                audio.pause();
+                updateUIState(false);
+            }
+        });
+
+        audio.addEventListener('play', () => updateUIState(true));
+        audio.addEventListener('pause', () => updateUIState(false));
+        audio.addEventListener('ended', () => updateUIState(false));
+
+        volumeSlider.addEventListener('input', (e) => {
+            audio.volume = parseFloat(e.target.value);
+            if (audio.volume > 0) previousVolume = audio.volume;
+        });
+
+        if (volumeIcon) {
+            volumeIcon.addEventListener('click', () => {
+                if (audio.volume > 0) {
+                    previousVolume = audio.volume;
+                    audio.volume = 0;
+                    volumeSlider.value = 0;
+                } else {
+                    audio.volume = previousVolume || 0.75;
+                    volumeSlider.value = audio.volume;
+                }
+            });
+        }
     </script>
 </body>
 </html>

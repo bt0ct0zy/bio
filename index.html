@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>bt0ct0zy | bio</title>
+    <title>xlr38 | bio</title>
     <!-- Google Fonts: JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -225,7 +225,7 @@
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 10px;
-            margin-bottom: 22px;
+            margin-bottom: 0;
         }
 
         .social-btn {
@@ -285,153 +285,6 @@
             transform: translateX(-50%) translateY(0);
         }
 
-        /* === 5. AUDIO PLAYER / WIDGET === */
-        .audio-widget {
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 12px;
-            padding: 12px 16px;
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            transition: border-color 0.3s ease;
-        }
-
-        .audio-widget:hover {
-            border-color: rgba(255, 255, 255, 0.14);
-        }
-
-        .play-btn {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            flex-shrink: 0;
-            transition: all 0.2s ease;
-        }
-
-        .play-btn:hover {
-            background: #ffffff;
-            color: #000000;
-            box-shadow: 0 0 16px rgba(255, 255, 255, 0.4);
-            transform: scale(1.05);
-        }
-
-        .play-btn svg {
-            width: 14px;
-            height: 14px;
-            fill: currentColor;
-            margin-left: 1px;
-        }
-
-        .play-btn.playing svg {
-            margin-left: 0;
-        }
-
-        .track-info {
-            flex: 1;
-            text-align: left;
-            min-width: 0;
-        }
-
-        .track-title {
-            font-size: 11px;
-            font-weight: 600;
-            color: rgba(255, 255, 255, 0.85);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: block;
-            margin-bottom: 4px;
-        }
-
-        /* Animated Equalizer Bars */
-        .equalizer-row {
-            display: flex;
-            align-items: flex-end;
-            gap: 2.5px;
-            height: 12px;
-        }
-
-        .eq-bar {
-            width: 3px;
-            height: 3px;
-            background-color: rgba(255, 255, 255, 0.45);
-            border-radius: 1px;
-            transition: height 0.15s ease, background-color 0.2s ease;
-        }
-
-        .audio-widget.is-playing .eq-bar {
-            background-color: #ffffff;
-            box-shadow: 0 0 6px rgba(255, 255, 255, 0.5);
-            animation: bounceBar 0.9s ease-in-out infinite alternate;
-        }
-
-        .audio-widget.is-playing .eq-bar:nth-child(1) { animation-duration: 0.65s; animation-delay: 0.1s; }
-        .audio-widget.is-playing .eq-bar:nth-child(2) { animation-duration: 0.85s; animation-delay: 0.3s; }
-        .audio-widget.is-playing .eq-bar:nth-child(3) { animation-duration: 0.55s; animation-delay: 0.0s; }
-        .audio-widget.is-playing .eq-bar:nth-child(4) { animation-duration: 0.75s; animation-delay: 0.4s; }
-        .audio-widget.is-playing .eq-bar:nth-child(5) { animation-duration: 0.95s; animation-delay: 0.2s; }
-
-        @keyframes bounceBar {
-            0% { height: 2px; }
-            50% { height: 12px; }
-            100% { height: 4px; }
-        }
-
-        /* Volume control */
-        .volume-control {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            flex-shrink: 0;
-        }
-
-        .volume-icon {
-            width: 14px;
-            height: 14px;
-            fill: rgba(255, 255, 255, 0.4);
-            cursor: pointer;
-            transition: fill 0.2s ease;
-        }
-
-        .volume-icon:hover {
-            fill: #ffffff;
-        }
-
-        .volume-slider {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 56px;
-            height: 3px;
-            border-radius: 2px;
-            background: rgba(255, 255, 255, 0.15);
-            outline: none;
-            cursor: pointer;
-            transition: background 0.2s ease;
-        }
-
-        .volume-slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 9px;
-            height: 9px;
-            border-radius: 50%;
-            background: #ffffff;
-            cursor: pointer;
-            box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
-            transition: transform 0.1s ease;
-        }
-
-        .volume-slider::-webkit-slider-thumb:hover {
-            transform: scale(1.2);
-        }
 
         /* === 6. BOTTOM VIEW COUNTER (OUTSIDE CARD) === */
         .view-counter {
@@ -491,13 +344,6 @@
             .socials-row {
                 gap: 8px;
             }
-            .audio-widget {
-                padding: 10px 12px;
-                gap: 10px;
-            }
-            .volume-slider {
-                width: 44px;
-            }
             .view-counter {
                 bottom: 14px;
                 left: 14px;
@@ -517,14 +363,14 @@
         
         <!-- 1. AVATAR (Click to open bt0llc) -->
         <a href="https://bt0ct0zy.github.io/bt0llc/" target="_blank" rel="noopener noreferrer" class="avatar-link" title="Open bt0llc">
-            <img src="https://i.imgur.com/9Xp4z5a.jpeg" alt="bt0ct0zy" class="avatar-img">
+            <img src="https://i.imgur.com/XW97Qdj.jpeg" alt="xlr38" class="avatar-img" referrerpolicy="no-referrer">
             <span class="status-dot" title="Online"></span>
         </a>
 
         <!-- 2. NICKNAME & TECH TAGS -->
         <div class="nickname-wrapper">
-            <!-- Click to open Telegram @bt0llc -->
-            <a href="https://t.me/bt0llc" target="_blank" rel="noopener noreferrer" class="nickname" title="Open telegram @bt0llc">bt0ct0zy</a>
+            <!-- Click to open Telegram @xlrenv -->
+            <a href="https://t.me/xlrenv" target="_blank" rel="noopener noreferrer" class="nickname" title="Open telegram @xlrenv">xlr38</a>
             
             <!-- Badges: DevSecOps engineer, cybersecurity specialist, reverse engineer, 38 -->
             <div class="badge-list">
@@ -566,36 +412,6 @@
                 <span class="btn-tooltip">Soundcloud</span>
             </a>
         </div>
-
-        <!-- 5. INTERACTIVE AUDIO PLAYER WIDGET -->
-        <div class="audio-widget" id="audioWidget">
-            <button type="button" class="play-btn" id="playBtn" aria-label="Toggle Play">
-                <svg id="playIcon" viewBox="0 0 24 24"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg>
-            </button>
-
-            <div class="track-info">
-                <span class="track-title" id="trackTitle">Apathy.mp3</span>
-                <div class="equalizer-row" id="equalizer">
-                    <div class="eq-bar"></div>
-                    <div class="eq-bar"></div>
-                    <div class="eq-bar"></div>
-                    <div class="eq-bar"></div>
-                    <div class="eq-bar"></div>
-                </div>
-            </div>
-
-            <div class="volume-control">
-                <svg class="volume-icon" viewBox="0 0 24 24" title="Toggle Mute"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
-                <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.01" value="0.75" aria-label="Volume">
-            </div>
-
-            <audio id="audioElement" preload="metadata" playsinline>
-                <source src="https://bt0ct0zy.github.io/bio/Apathy.mp3" type="audio/mpeg">
-                <source src="https://raw.githubusercontent.com/bt0ct0zy/bio/main/Apathy.mp3" type="audio/mpeg">
-                <source src="Apathy.mp3" type="audio/mpeg">
-            </audio>
-        </div>
-
     </main>
 
     <!-- 6. BOTTOM-LEFT VIEW COUNTER (OUTSIDE CARD) -->
@@ -617,70 +433,6 @@
                 glow.style.top = e.clientY + 'px';
             });
         });
-
-        /* ===================================================
-           2. AUDIO PLAYER (Apathy.mp3)
-        =================================================== */
-        const audio = document.getElementById('audioElement');
-        const audioWidget = document.getElementById('audioWidget');
-        const playBtn = document.getElementById('playBtn');
-        const volumeSlider = document.getElementById('volumeSlider');
-        const volumeIcon = document.querySelector('.volume-icon');
-        let isAudioPlaying = false;
-        let previousVolume = 0.75;
-
-        const PLAY_SVG = '<svg viewBox="0 0 24 24"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg>';
-        const PAUSE_SVG = '<svg viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>';
-
-        audio.volume = parseFloat(volumeSlider.value);
-
-        function updateUIState(playing) {
-            isAudioPlaying = playing;
-            if (playing) {
-                audioWidget.classList.add('is-playing');
-                playBtn.classList.add('playing');
-                playBtn.innerHTML = PAUSE_SVG;
-            } else {
-                audioWidget.classList.remove('is-playing');
-                playBtn.classList.remove('playing');
-                playBtn.innerHTML = PLAY_SVG;
-            }
-        }
-
-        playBtn.addEventListener('click', () => {
-            if (audio.paused) {
-                audio.play().then(() => {
-                    updateUIState(true);
-                }).catch((err) => {
-                    console.warn("Audio playback error:", err);
-                });
-            } else {
-                audio.pause();
-                updateUIState(false);
-            }
-        });
-
-        audio.addEventListener('play', () => updateUIState(true));
-        audio.addEventListener('pause', () => updateUIState(false));
-        audio.addEventListener('ended', () => updateUIState(false));
-
-        volumeSlider.addEventListener('input', (e) => {
-            audio.volume = parseFloat(e.target.value);
-            if (audio.volume > 0) previousVolume = audio.volume;
-        });
-
-        if (volumeIcon) {
-            volumeIcon.addEventListener('click', () => {
-                if (audio.volume > 0) {
-                    previousVolume = audio.volume;
-                    audio.volume = 0;
-                    volumeSlider.value = 0;
-                } else {
-                    audio.volume = previousVolume || 0.75;
-                    volumeSlider.value = audio.volume;
-                }
-            });
-        }
     </script>
 </body>
 </html>
